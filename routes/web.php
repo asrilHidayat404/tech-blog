@@ -14,6 +14,10 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get("/read/{slug}", function () {
+    return Inertia::render("NewPage");
+});
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
