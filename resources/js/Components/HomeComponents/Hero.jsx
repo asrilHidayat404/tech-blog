@@ -20,16 +20,16 @@ const Hero = () => {
                 return Math.floor(Math.random()*255+1)
             }, 1000)
     }
-    useEffect(() => {
-        console.log(colors.red)
-        console.log(colors.green)
-        console.log(colors.blue)
-    }, [colors])
+    // useEffect(() => {
+    //     console.log(colors.red)
+    //     console.log(colors.green)
+    //     console.log(colors.blue)
+    // }, [colors])
 
     return (
         <div className="text-white h-screen flex items-center justify-between w-full lg:p-0 p-5" style={style}>
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-20 mix">
-                <div className="md:w-1/2 mb-10 md:mb-0">
+                <div className="mb-10 md:mb-0">
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">
                         Discover the Latest in Technology
                     </h1>
@@ -40,8 +40,8 @@ const Hero = () => {
                         Read Latest Posts
                     </a>
                 </div>
-                <div className="md:w-1/2 h-full hidden lg:flex justify-center">
-                    <div className="w-6/12">
+                <div className=" h-full hidden lg:flex md:flex justify-center">
+                    <div className="lg:w-6/12 w-4/6">
                     <BorderRainbow>
                         <img
                             src="https://wiipa.org/wp-content/uploads/2023/03/photo_2023-03-25_23-12-23.jpg"

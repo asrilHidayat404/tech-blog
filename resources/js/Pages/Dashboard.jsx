@@ -1,5 +1,6 @@
+import SideBar from '@/Components/SideBar';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 
 // export default function Dashboard() {
 //     return (
@@ -26,59 +27,15 @@ import { Head } from '@inertiajs/react';
 // }
 
 export default function Dashboard () {
+    const {post} = useForm()
+    const LogOut = (e) => {
+        e.preventDefault()
+        post(route('logout'));
+    }
     return (
         <div className="flex h-screen">
             {/* Sidebar */}
-            <div className="w-64 bg-white shadow-md">
-                <div className="flex items-center justify-between p-4 border-b">
-                    <i className="fas fa-bars text-xl"></i>
-                    <i className="fab fa-blogger text-orange-500 text-3xl"></i>
-                </div>
-                <div className="p-4">
-                    <h2 className="text-lg font-semibold">Simple Short Stories</h2>
-                    <button className="mt-4 w-full bg-orange-500 text-white py-2 rounded-md">+ POSTINGAN BARU</button>
-                </div>
-                <nav className="mt-4">
-                    <ul>
-                        <li className="flex items-center p-4 text-orange-500">
-                            <i className="fas fa-file-alt mr-2"></i>
-                            <span>Postingan</span>
-                        </li>
-                        <li className="flex items-center p-4">
-                            <i className="fas fa-chart-bar mr-2"></i>
-                            <span>Statistik</span>
-                        </li>
-                        <li className="flex items-center p-4">
-                            <i className="fas fa-comments mr-2"></i>
-                            <span>Komentar</span>
-                        </li>
-                        <li className="flex items-center p-4">
-                            <i className="fas fa-dollar-sign mr-2"></i>
-                            <span>Penghasilan</span>
-                        </li>
-                        <li className="flex items-center p-4">
-                            <i className="fas fa-file mr-2"></i>
-                            <span>Halaman</span>
-                        </li>
-                        <li className="flex items-center p-4">
-                            <i className="fas fa-th-large mr-2"></i>
-                            <span>Tata Letak</span>
-                        </li>
-                        <li className="flex items-center p-4">
-                            <i className="fas fa-paint-brush mr-2"></i>
-                            <span>Tema</span>
-                        </li>
-                        <li className="flex items-center p-4">
-                            <i className="fas fa-cog mr-2"></i>
-                            <span>Setelan</span>
-                        </li>
-                        <li className="flex items-center p-4">
-                            <i className="fas fa-book mr-2"></i>
-                            <span>Daftar Bacaan</span>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <SideBar />
             {/* Main Content */}
             <div className="flex-1 flex flex-col">
                 <div className="flex items-center justify-between p-4 bg-white shadow-md">
@@ -87,7 +44,10 @@ export default function Dashboard () {
                         <i className="fas fa-info-circle text-xl"></i>
                         <i className="fas fa-question-circle text-xl"></i>
                         <i className="fas fa-th text-xl"></i>
-                        <div className="w-8 h-8 rounded-full bg-gray-300"></div>
+                        <div className="w-8 h-8 rounded-full bg-gray-300">coy</div>
+                        <form onClick={LogOut} action="">
+                            <button className='bg-orange-600 text-white py-3 px-5 hover:bg-orange-400 rounded-lg' type='submit'>Logout</button>
+                        </form>
                     </div>
                 </div>
                 <div className="p-4">
