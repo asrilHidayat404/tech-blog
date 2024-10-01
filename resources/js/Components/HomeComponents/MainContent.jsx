@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 import React, { useContext, useEffect, useState } from 'react';
-import { PostDatas } from '@/Pages/Welcome';
+import { PostDatas } from '@/Pages/Home';
 import Card from '../Card';
 
 const MainContent = () => {

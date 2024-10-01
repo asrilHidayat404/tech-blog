@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Welcome', [
+        return Inertia::render('Home', [
             'posts' => Post::with('category')->get()->map(function ($post) {
                 $post->upload_time = $post->created_at->diffForHumans();
                 $post->limit_excerpt = Str::limit($post->excerpt, 50); // Menggunakan Carbon
