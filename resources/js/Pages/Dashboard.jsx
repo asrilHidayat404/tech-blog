@@ -1,26 +1,28 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import DashboardHeader from '@/Components/DashboardHeader';
+import PostCard from '@/Components/PostCard';
+import SideBar from '@/Components/SideBar';
+import { useState } from 'react';
 
 export default function Dashboard() {
+    const [isOpen, setIsOpen] = useState(false);
     return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Dashboard
-                </h2>
-            }
-        >
-            <Head title="Dashboard" />
+        <div className="flex h-screen">
+            {/* Sidebar */}
+            <SideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                        <div className="p-6 text-gray-900 dark:text-gray-100">
-                            You're logged in!
-                        </div>
+            {/* Main Content */}
+            <div className="flex-1 flex flex-col lg:ml-64"> {/* Tambahkan lg:ml-64 agar konten utama bergeser ketika sidebar terbuka di layar besar */}
+                <DashboardHeader isOpen={isOpen} setIsOpen={setIsOpen}/>
+                <div className="p-4">
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-lg font-semibold">Semua (1)</h2>
+                        <span className="text-blue-500">KELOLA</span>
+                    </div>
+                    <div>
+                        <PostCard />
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </div>
     );
 }

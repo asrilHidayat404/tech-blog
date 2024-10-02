@@ -22,10 +22,8 @@ const BorderRainbow = ({children}) => {
       const color5 = colors[randomNumber5]
       const color6 = colors[randomNumber6]
       const color7 = colors[randomNumber7]
-      // console.log(color, color2, color3, color4, color5, color6, color7)
-      rain.current.style.transition = "1s ease"
       return rain.current.style.backgroundImage= `linear-gradient(to right, ${color}, ${color2}, ${color3}, ${color4}, ${color5}, ${color6}, ${color7}`;
-    } , 2000)
+    } , 100)
   }
   const result = () => {
     rC()
