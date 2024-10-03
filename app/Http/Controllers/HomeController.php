@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
@@ -48,9 +49,16 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        return Inertia::render('NewPage', [
+            'post' => $post,
+            'desc' => [
+                "uploaded_at" => $post->created_at->diffForHumans(),
+                "author" => $post->user,
+                'category' => $post->category
+            ]
+        ]);
     }
 
     /**
