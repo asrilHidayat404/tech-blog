@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
+            $table->string('avatar')->default('https://cinemaweb.com.br/wp-content/uploads/2024/06/pessoa-karl-urban-300x450-cwj.avif');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
