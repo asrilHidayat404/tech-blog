@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Application;
@@ -9,13 +10,12 @@ use Inertia\Inertia;
 Route::get('/', [HomeController::class, 'index']);
 Route::get("/read/{post:slug}", [HomeController::class, 'show']);
 
-Route::get("/write", function () {
-    return Inertia::render("Write");
-});
+// Route::get("/write", [PostController::class, 'create']);
+// Route::post("/write", [PostController::class, 'store'])->name('write');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-});//->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard/postingan', function () {
     return Inertia::render('Postingan');
@@ -54,9 +54,15 @@ Route::get('/dashboard/daftar-bacaan', function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get("/write", [PostController::class, 'create']);
+    Route::post("/write", [PostController::class, 'store'])->name('write');
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

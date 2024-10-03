@@ -8,21 +8,18 @@ const Write = () => {
     const [category, setCategory] = useState(''); // State untuk kategori
     const [content, setContent] = useState(''); // State untuk konten
     const [thumbnail, setThumbnail] = useState()
-    const { post } = useForm();
-
-    useEffect(() => {
-        console.log({ title, category, content, thumbnail }); // Menampilkan data di console
-    }, [title, category, content]);
+    const { data, post, setData } = useForm({
+        title: "",
+        category: "",
+        content: "",
+        thumbnail: ""
+    });
 
     const submitPost = (e) => {
         e.preventDefault();
 
         // Mengirim data ke server
-        post(route('write'), {
-            title,
-            category,
-            content,
-        });
+        post(route('write'));
     };
 
     return (
@@ -41,7 +38,8 @@ const Write = () => {
                     <input
                         type="file"
                         id="thumbnail"
-                        onChange={(e) => setThumbnail(e.target)}
+                        // value={data.thumbnail}
+                        onChange={e => setData('thumbnail', e.target.files[0])}
                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-orange-500"
                         required
                     />
@@ -53,8 +51,8 @@ const Write = () => {
                     <input
                         type="text"
                         id="title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        value={data.title}
+                        onChange={(e) => setData("title", e.target.value)}
                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-orange-500"
                         required
                     />
@@ -66,10 +64,9 @@ const Write = () => {
                     <input
                         type="text"
                         id="category"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        value={data.category}
+                        onChange={(e) => setData("category", e.target.value)}
                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-orange-500"
-                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -78,7 +75,7 @@ const Write = () => {
                     </label>
                     <CKEditor
                         editor={ClassicEditor}
-                        data={content}
+                        data={data.content}
                         config={{
                             toolbar: [
                                 'heading', '|',
@@ -96,7 +93,7 @@ const Write = () => {
                         }}
                         onChange={(event, editor) => {
                             const data = editor.getData();
-                            setContent(data);
+                            setData("content", data);
                         }}
                     />
                 </div>
@@ -104,12 +101,6 @@ const Write = () => {
                     Post Now
                 </button>
             </form>
-            <div>
-                <h3>Preview Konten</h3>
-                <h4>{title}</h4>
-                <h5>Kategori: {category}</h5>
-                <div>{content}</div>
-            </div>
         </div>
     );
 };
