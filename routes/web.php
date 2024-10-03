@@ -7,10 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index']);
-
-Route::get("/read/{slug}", function () {
-    return Inertia::render("NewPage");
-});
+Route::get("/read/{post:slug}", [HomeController::class, 'show']);
 
 Route::get("/write", function () {
     return Inertia::render("Write");
@@ -18,7 +15,8 @@ Route::get("/write", function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-});// ->middleware(['auth', 'verified'])->name('dashboard');
+});//->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/dashboard/postingan', function () {
     return Inertia::render('Postingan');
 });

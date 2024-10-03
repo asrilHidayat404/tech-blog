@@ -20,11 +20,11 @@ createInertiaApp({
         const root = createRoot(el);
         const isDashboard = props.initialPage.component === 'Dashboard';
         root.render(
-        <>
-            {!isDashboard && <Navbar />} {/* Render Navbar jika bukan halaman dashboard */}
+        <div>
+            {!isDashboard && <Navbar />}
             <App {...props} />
-            {!isDashboard && <Footer />} {/* Render Footer jika bukan halaman dashboard */}
-        </>
+            {!isDashboard && <Footer />}
+        </div>
     );
     },
     progress: {
