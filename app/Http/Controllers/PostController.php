@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Inertia\Inertia;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -20,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render("Write");
     }
 
     /**
@@ -28,7 +31,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validData = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        // Simpan Gambarnya
+        $validData['thumbnail'] = $request->file('thumbnail')->store('posts/thumbnails');
+
+        Post::create([
+            'user_id' => Auth::user()->id,
+            'category_id' => rand(1,5),
+            'title' => $validData['title'],
+            'slug' => Str::slug($validData['title'], '-','id'),
+            'excerpt' => Str::excerpt($validData['content']),
+            'content' => $validData['content'],
+            'thumbnail' => $validData['thumbnail']
+        ]);
+
+        return redirect('dashboard')->with('success', 'Post berhasil disimpan');
     }
 
     /**
