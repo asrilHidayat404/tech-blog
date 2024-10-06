@@ -27,9 +27,9 @@ const NewPage = ({ post, desc, content }) => {
                 </div>
                 <div className="lg:w-1/2 flex flex-col">
                     <div className="flex gap-3 items-center">
-                        <div class="rounded-full w-12 h-12 overflow-hidden">
+                        <div className="rounded-full w-12 h-12 overflow-hidden">
                             <img src={`${desc.author.avatar}`} alt="avatar"
-                                class="w-full h-full object-cover rounded-full"/>
+                                className="w-full h-full object-cover rounded-full"/>
                         </div>
                         <span className="font-semibold text-xl ">{desc.author.name}</span>
                     </div>
@@ -39,25 +39,12 @@ const NewPage = ({ post, desc, content }) => {
                 </div>
             </div>
             <div className="w-full lg:px-20 px-5">
-                {
-                    content?.map((body, i) => {
-                        return (
-                            /**
-                             * OBE DINNAK YAK TAK TAOH KOK
-                             * DATANAH LAH DEPAK
-                             * KENG MAK TAK TAMPIL, TAK TAOH KOK
-                             * BANGSAT LAH INERTIA
-                             * E CONSOLE TANG NING BECAH
-                             */
                             <p
-                                key={i}
+                                key={post.id}
                                 className="indent-14 mb-4 text-justify"
                             >
-                                {body}
+                                {post.content}
                             </p>
-                        )
-                    })
-                }
             </div>
         </div>
     )

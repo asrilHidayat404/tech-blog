@@ -2,10 +2,11 @@ import { Link } from '@inertiajs/react'
 import React from 'react'
 
 const Card = ({ post }) => {
+    console.log(post.thumbnail)
     return (
         <div className="bg-white flex flex-col justify-between rounded-lg overflow-hidden shadow-xl p-2 lg:w-64 md:w-64 lg:min-h-[400px] min-h-[200px] mb-4">
             <div className='lg:inline-block flex flex-col gap-4'>
-                <img src={post.thumbnail} className='rounded-lg' alt="" />
+                <img src={`storage/${post.thumbnail}`} className='rounded-lg' alt="" />
                 <h3 className="lg:text-lg text-lg font-semibold mb-1">
                     {post.limit_title}
                 </h3>
